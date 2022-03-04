@@ -67,6 +67,63 @@ on another terminal.
 If four types of numbers are displayed , the distance sensor can be simulated properly.
 This completes the startup confirmation.
 
-## move the raspimouse on the simulator
-### Motor energization
+## Move the raspimouse on the simulator
+### Motor energization and Move Raspimouse
+Motor can be energized by the following operation.
+```
+$ echo 1 > /dev/rtmotoren0
+```
+If you hear a beep, the program is running correctly
+
+You can move the rasp pie mouse on the simulator without going through ROS.
+```
+$ echo 100 > /dev/rtmotor_raw_l0
+$ echo -100 > /dev/rtmotor_raw_r0
+```
+The first line gives the left motor 100Hz in the forward direction.
+
+The second line gives the right motor1200Hz in the opposite direction.
+
+Note*: Set the value to 0 every time the test is done
+```
+$ echo 0 > /dev/rtmotor_raw_l0
+$ echo 0 > /dev/rtmotor_raw_r0
+```
+
+### Move with the keyboard
+Run the following command in another terminal.
+```
+$ roslaunch raspimouse_gazebo raspimouse_with_samplemaze.launch 
+$ roslaunch raspimouse_gazebo keyboard_teleop.launch
+```
+Then, it will be in the key input waiting state as follows.
+
+Moving around:
+
+   u    i    o
+   
+   j    k    l
+   
+   m    ,    .
+   
+For Holonomic mode (strafing), hold down the shift key:
+
+---------------------------
+   U    I    O
+   
+   J    K    L
+   
+   M    <    >
+   
+t : up (+z)
+
+b : down (-z)
+
+anything else : stop
+
+q/z : increase/decrease max speeds by 10%
+
+w/x : increase/decrease only linear speed by 10%
+
+e/c : increase/decrease only angular speed by 10%
 
