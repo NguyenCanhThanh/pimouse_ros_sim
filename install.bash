@@ -14,6 +14,22 @@ roscd && cd ..
 rosdep install -r -y --ignore-src --from-paths src
 roscd && cd .. && source ~/catkin_ws/devel/setup.bash && catkin_make
 
+roscd && cd ../src
+cd pimouse_ros_sim/raspimouse_ros/scripts/
+sudo chmod +x *.py
+
+roscd && cd ../src
+cd pimouse_ros_sim/raspimouse_ros_2/scripts/
+sudo chmod +x *.py
+
+roscd && cd ../src
+cd pimouse_ros_sim/raspimouse_sim/raspimouse_gazebo/scripts/
+sudo chmod +x *.py
+
+roscd && cd ../src
+cd pimouse_ros_sim/raspimouse_sim/raspimouse_fake/scripts/
+sudo chmod +x *.py
+
 source ~/catkin_ws/devel/setup.bash
 
 mkdir -p ~/.gazebo/models && cd ~/.gazebo/models
