@@ -96,34 +96,21 @@ Run the following command in another terminal.
 $ roslaunch raspimouse_gazebo raspimouse_with_samplemaze.launch 
 $ roslaunch raspimouse_gazebo keyboard_teleop.launch
 ```
-Then, it will be in the key input waiting state as follows.
 
-Moving around:
+## SLAM Example
 
-   u    i    o
-   
-   j    k    l
-   
-   m    ,    .
-   
-For Holonomic mode (strafing), hold down the shift key:
-
----------------------------
-   U    I    O
-   
-   J    K    L
-   
-   M    <    >
-   
-t : up (+z)
-
-b : down (-z)
-
-anything else : stop
-
-q/z : increase/decrease max speeds by 10%
-
-w/x : increase/decrease only linear speed by 10%
-
-e/c : increase/decrease only angular speed by 10%
+Install pakage raspimouse_ros_examples:
+```
+$ cd ~/catkin_ws/src
+$ git clone https://github.com/rt-net/raspimouse_ros_examples.git
+$ rosdep install -r -y -i --from-paths raspimouse*
+$ cd ~/catkin_ws && catkin_make
+$ source ~/catkin_ws/devel/setup.bash
+```
+Test SLAM on the simulator
+```
+$ roslaunch raspimouse_gazebo raspimouse_with_willowgarage.launch
+$ roslaunch raspimouse_ros_examples slam_gmapping.launch
+$ roslaunch raspimouse_ros_examples teleop.launch key:=true mouse:=false
+```
 
