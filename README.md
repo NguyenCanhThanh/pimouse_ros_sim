@@ -1,46 +1,72 @@
-# raspimouse_sim_installer
+# pimouse_ros_sim
 
-[![Build Status](https://travis-ci.org/ryuichiueda/raspimouse_sim_installer.svg?branch=master)](https://travis-ci.org/ryuichiueda/raspimouse_sim_installer)
 
 Installer for raspimouse_sim
 
-## supported version of ROS
+## Supported version of ROS
 
-* Indigo
-* Kinetic
 * Melodic
 
-## how to use
+## How to use
 
 __A catkin workspace should be prepared beforehand.__
 
-Simply, just run
+Let's create and build a catkin workspace:
 ```
-$ bash -exv -c "$(curl -sSfL https://git.io/raspimouse-sim-installer)"
+$ mkdir -p ~/catkin_ws/src
+$ cd ~/catkin_ws/
+$ catkin_make
 ```
-on your terminal.
 
-Also, you can clone this repository and run
+Simply, you can clone this repository and run:
 ```
+$ sudo chmod+x install.bash
 $ ./install.bash
 ```
 on your terminal.
 
-## how to check
+## Library Overview
+### Basic Configuration
+* raspimouse_description
+
+Robot model (URDF)
+### Hardware Drivers and Simulation
+* raspimouse_ros
+
+Raspberry Pi Mouse Hardware Driver
+* raspimouse_gazebo
+
+Simulator Data (Requires raspimouse_fake)
+* raspimouse_fake
+
+Simulator Drivers (Requires raspimouse_gazebo)
+
+## Quick Start
+Create device file in the /dev directory:
+```
+$ roscore
+$ rosrun raspimouse_fake gen_dev_file.sh
+```
+Give the permission to nomal user
+```
+$ sudo chmod 666 /dev/rt*
+```
+
+## Operation check of Raspberry Pi Mouse Simulator
 
 Launch the simulator by
 ```
 $ roslaunch raspimouse_gazebo raspimouse_with_samplemaze.launch 
 ```
-and do
+After confirming that Gazebo has started, enter the following command in the second window.
 ```
-$ rosrun raspimouse_control controller_vel_publisher.py
+$ cat /dev/rtlightsensor0
 ```
 on another terminal.
 
-## reference
+If four types of numbers are displayed , the distance sensor can be simulated properly.
+This completes the startup confirmation.
 
-This code is derived from [.travis.yml of rt-net/raspimouse_sim](https://github.com/rt-net/raspimouse_sim/blob/aa6cf0ab2aa7a1a14f043f9ac6392523db1fb04a/.travis.yml).
+## move the raspimouse on the simulator
+### Motor energization
 
-Gazebo model download scripts are derived from [How to download all Gazebo models - HOME PAGE OF
-HELIO PERRONI FILHO](http://machineawakening.blogspot.jp/2015/05/how-to-download-all-gazebo-models.html).
