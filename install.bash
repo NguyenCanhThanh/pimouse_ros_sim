@@ -30,6 +30,10 @@ roscd && cd ../src
 cd pimouse_ros_sim/raspimouse_sim/raspimouse_fake/scripts/
 sudo chmod +x *.py
 
+roscd && cd ../src
+cd pimouse_ros_sim/raspimouse_sim/raspimouse_fake/scripts/
+sudo chmod +x *.sh
+
 source ~/catkin_ws/devel/setup.bash
 
 mkdir -p ~/.gazebo/models && cd ~/.gazebo/models
